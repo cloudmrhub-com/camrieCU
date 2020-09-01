@@ -47,8 +47,8 @@ WORKDIR /app
 #CMD sh app/code/run_camrie.sh /opt/mcr/v96/
 
 
-
+#example
 #docker run --rm -it --mount type=bind,source=/data/tmp,target=/tmp camrie bash
-#sh run_camrie.sh /opt/mcr/v96/ /app/testoptions.json /tmp/o.json /tmp/l.json /camrieTemp/
+#sh run_camrie.sh /opt/mcr/v96/ /app/testoptions.json /camrieTemp/output.json /camrieTemp/l.json /camrieTemp/
 
 
