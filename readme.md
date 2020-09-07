@@ -37,6 +37,16 @@ and then from the container
 ```sh
 sh run_camrie.sh /opt/mcr/v96/ /camrieTemp/testoptions.json /camrieTemp/output.json /camrieTemp/l.json /camrieTemp/
 ```
+## Windows and space
+docker on windows uses docker-toolbox which basically installs a VM on your windows machine and on that create a new linux os where it build the requested docker image. If you are running low on space on C:\ you can move .docker directory from C:\Users\{{username}} to e.g. D:\
+
+and then  run:
+
+``` 
+cd C:\Users\{{username}}
+mklink /j .docker D:\.docker
+
+```
 
 
 [*Dr. Eros Montin, PhD*](http://me.biodimensional.com)
