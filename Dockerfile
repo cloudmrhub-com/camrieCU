@@ -44,7 +44,7 @@ COPY code /app
 COPY testoptions.json /app
 RUN mkdir /camrieTemp
 WORKDIR /app
-#CMD sh app/code/run_camrie.sh /opt/mcr/v96/
+ENTRYPOINT ["sh", "/app/run_camrie.sh", "/opt/mcr/v96/"]
 
 
 #example

@@ -24,6 +24,11 @@ sh run_camrie.sh /opt/mcr/v96/ /app/testoptions.json /camrieTemp/output.json /ca
 ```
 the results will be available in the host computer in path /data/tmp/output.json
 
+
+## Call for a task
+docker run  -it --mount type=bind,source=/data/tmp,target=/camrieTempp mycamrieimage /app/testoptions.json /camrieTemp/output.json /camrieTemp/l.json /camrieTemp/
+
+
 ## Customize the simulation
 From the container
 ```sh
