@@ -41,7 +41,7 @@ fileinput = val.geometry.link;
 
 val.test = fileinput;
 temp = strcat(val.path, 'InputGeometry.txt');
-filetest = websave(temp, fileinput);
+filetest = downloadif(temp, fileinput);
 
 %if fileinput is already a txt no ned to convert.  i think it's not converting @Giuseppe cn
 %you check?
@@ -93,9 +93,22 @@ catch
     return;
 end
 
-%#####DEBUG####
-slicemin=97;
-slicemax = 99;
+% %#####DEBUG####
+% 
+% 
+if (isfield(val,'limit'))
+
+    if (isfield(val.limit,'min'))
+        slicemin=val.limit.min;
+    end
+
+        if (isfield(val.limit,'max'))
+            slicemax=val.limit.max;
+            
+    end
+
+end
+
 
 val.sequence
 
@@ -204,7 +217,7 @@ if (val.output.signal)
             OutClass.logIT('Error Computing signal','error');
             OutClass.logIT(result,'error');
             %temp = strcat(val.path, OutputJson);
-               tmOutClass.exportLOG(logJson);     OutClass.exportResults(OutputJson)
+               OutClass.exportLOG(logJson);     OutClass.exportResults(OutputJson)
             return;
         else
             temp = strcat('Slice ', num2str(slice), ' computed');

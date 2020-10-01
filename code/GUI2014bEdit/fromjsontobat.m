@@ -205,7 +205,7 @@ if (val.output.signal)
             OutClass.logIT('Error Computing signal','error');
             OutClass.logIT(result,'error');
             %temp = strcat(val.path, OutputJson);
-               tmOutClass.exportLOG(logJson);     OutClass.exportResults(OutputJson)
+               OutClass.exportLOG(logJson);     OutClass.exportResults(OutputJson)
             return;
         else
             temp = strcat('Slice ', num2str(slice), ' computed');

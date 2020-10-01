@@ -12,7 +12,7 @@ if (okdown ==0) return; end
 %Write Tissue Filename
 try
     temp = strcat(val.path, 'Tissue.tiss')
-    websave(temp, val.tissue.link)
+    downloadif(temp, val.tissue.link)
 catch e
     OutClass.logIT(e.message, 'error');
     OutClass.exportLOG(Outputfile);
@@ -93,7 +93,7 @@ okdown =1;
 
 temptxt = strcat(path, 'a.txt');
 try
-    websave(temptxt, link);
+    downloadif(temptxt, link);
 catch e
     OutCglass.logIT(e.message, 'error');
     OutClass.exportLOG(Outputfile);
@@ -133,3 +133,7 @@ delete(binfile);
 
 
 end
+
+
+
+
