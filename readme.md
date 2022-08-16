@@ -37,6 +37,9 @@ camrieAPI('/data/PROJECTS/camrieCU/testdata/testNoise.json', '~/o.json', '~/l.js
 %position of the jsonfile where the log will be written to
 %position of the directory where the calculatin will be done
 ```
+## Tested
+- [x] linux ubuntu 22.04
+- [x] docker linux ubuntu image
 
 
 Camrie is part of [Cloud MR](http://www.cloudmrhub.com).
