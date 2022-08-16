@@ -169,11 +169,11 @@ if (val.output.noise)
     cd(functionspath);
     try
         for coil = 1:(val.coils.receivingCoilsNumber)
-            noisefile = strcat(val.path, 'noiseSet1/Noise', num2str(coil), '.nois');
+            noisefile = strcat(val.path, 'Noise', num2str(coil), '.nois');
             KNoise(:,:,coil) = loadNoise(noisefile, val);
         end
         %temp = strcat(val.path, OutputJson);
-        OutClass.addtoExporter('image2D', 'K Matrix Noise', KNoise);
+        OutClass.addToExporter('image2D', 'K Matrix Noise', KNoise);
         OutClass.exportLOG(logJson);     OutClass.exportResults(OutputJson)
     catch
         OutClass.logIT('Error Loading noise File','error');

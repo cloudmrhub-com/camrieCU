@@ -1,23 +1,28 @@
 
 function Strname = writeBatchSignal(val, inputInfo, SlicePosition, enginepath)
-
-CompCommand = 'NutateSignal';
-
+% edited 08/10/22 Giuseppe and Eros
+CompCommand = 'PsudoMRISignal';
+NC=str2num(getenv('ncores'));
+if isempty(NC)
+    NC=1;
+end
+%filename = strcat(val.path, CompCommand, num2str(SlicePosition),'.bat');
 filename = strcat(val.path, CompCommand, num2str(SlicePosition),'.bat');
 
 fid = fopen(filename, 'w');
 
 %Write Echo
-temp = strcat('echo y | wine');
+temp = strcat('echo y | ');
 fprintf(fid,[slashCvrt(temp),' ']);
 
 %Write Command
-temp = strcat('"',enginepath, CompCommand,'"');
+temp = strcat(CompCommand);
 fprintf(fid,[slashCvrt(temp),' ']);
 
 %Write Iso, Threads
-%temp = strcat('"NumIso=1" "Thread=1" ');
-temp = strcat('"NumIsoX=1" "NumIsoY=1" "NumIsoZ=1" "Thread=1" ');
+temp = strcat(['"NumIso=1" "Thread=' num2str(NC) '" ']);
+display(temp)
+%temp = strcat('"NumIsoX=1" "NumIsoY=1" "NumIsoZ=1" "Thread=1" ');
 fprintf(fid,[slashCvrt(temp),' ']);
 
 %Write B0

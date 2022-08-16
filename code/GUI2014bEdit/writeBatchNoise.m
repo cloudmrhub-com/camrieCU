@@ -1,18 +1,18 @@
 
 function Strname = writeBatchNoise(val, inputInfo, enginepath)
 
-CompCommand = 'NutateNoise';
+CompCommand = 'PsudoMRINoise';
 
 filename = strcat(val.path, CompCommand,'.bat');
 
 fid = fopen(filename, 'w');
 
 %Write Echo
-temp = strcat('echo y | wine');
+temp = strcat('echo y | ');
 fprintf(fid,[slashCvrt(temp),' ']);
 
 %Write Command
-temp = strcat('"',enginepath, CompCommand,'"');
+temp = strcat(CompCommand);
 fprintf(fid,[slashCvrt(temp),' ']);
 
 %Write Geometry

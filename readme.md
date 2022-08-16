@@ -1,58 +1,45 @@
+Aug 22
 # Camrie CU
 
-First implementation of the camrie Computing Unit. 
-Camrie is part of [Cloud MR](http://www.cloudmrhub.com).
-
+matlab interface to PSudoMRI
 ## Installation
-```sh
-git clone https://github.com/developcloudmrhub/camrieCU.git
-cd camrieCU/
-docker build ./ -t mycamrieimage
+
+[CamrieCU](https://github.com/cloudmrhub-com/camrieCU) matlab script that calls PsudoMRICU
+ 1. Compile [PsudoMRICU](https://github.com/cloudmrhub-com/PsudoMRICU)
+ 1. Add bin to "PATH" environment variable
+ 1. add environment variable ncores
+   - e.g. in matlab setenv('ncores','20')
+   - e.g. in bash ncores=20 
+
+## Usage 
+before running these code please change the position of the files needed in testdata/testSignal.json and testdata/testNoise.json to your path
+e.g.
+change /data/PROJECTS/camrieCU/code/GUI2014bEdit/testdata/head_2x2x2.txt to  $PATH_WHERE_YOU_CLONED_CAMRIECU/code/GUI2014bEdit/testdata/head_2x2x2.txt
+
+1 Signal Simulation
 ```
-## Use
-We want mount a local directory let's say /data/tmp of the host into /camrieTemp and enter in the image. If you don't have that directory /data/tmp, you can create it or provide a different path
-```sh
-
-docker run --rm -it --mount type=bind,source=/data/tmp,target=/camrieTemp mycamrieimage bash
-```
-Now you are inside the docker image of camrie.
-
-
-From inside the container
-```sh
-sh run_camrie.sh /opt/mcr/v96/ /app/testoptions.json /camrieTemp/output.json /camrieTemp/l.json /camrieTemp/
-```
-the results will be available in the host computer in path /data/tmp/output.json
-
-
-## Call for a task
-docker run  -it --mount type=bind,source=/data/tmp,target=/camrieTempp mycamrieimage /app/testoptions.json /camrieTemp/output.json /camrieTemp/l.json /camrieTemp/
-
-
-## Customize the simulation
-From the container
-```sh
-cp /app/testoptions.json /camrieTemp/
+cd 'code'
+addpath(genpath(pwd))
+camrieAPI('/data/PROJECTS/camrieCU/testdata/testSignal.json', '~/o.json', '~/l.json', '/data/tmp/trial1/')
+%position of the jsonfile with data customization
+%position of the jsonfile where the output will be written to
+%position of the jsonfile where the log will be written to
+%position of the directory where the calculatin will be done
 ```
 
-From the host you can edit the new file that you'll find at /data/tmp/testoptions.json
-
-and then from the container
-
-```sh
-sh run_camrie.sh /opt/mcr/v96/ /camrieTemp/testoptions.json /camrieTemp/output.json /camrieTemp/l.json /camrieTemp/
+1 Noise Simulation
 ```
-## Windows and space
-docker on windows uses docker-toolbox which basically installs a VM on your windows machine and on that create a new linux os where it build the requested docker image. If you are running low on space on C:\ you can move .docker directory from C:\Users\{{username}} to e.g. D:\
-
-and then  run:
-
-``` 
-cd C:\Users\{{username}}
-mklink /j .docker D:\.docker
-
+cd 'code'
+addpath(genpath(pwd))
+camrieAPI('/data/PROJECTS/camrieCU/testdata/testNoise.json', '~/o.json', '~/l.json', '/data/tmp/trial1/')
+%position of the jsonfile with data customization
+%position of the jsonfile where the output will be written to
+%position of the jsonfile where the log will be written to
+%position of the directory where the calculatin will be done
 ```
 
+
+Camrie is part of [Cloud MR](http://www.cloudmrhub.com).
 
 [*Dr. Eros Montin, PhD*](http://me.biodimensional.com)
 **46&2 just ahead of me!**
